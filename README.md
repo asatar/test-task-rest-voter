@@ -71,7 +71,7 @@ Build a voting system for deciding where to have lunch.
 
 ### DB schema:
 * Restaurant table
-* Two child tables: Vote and MenuItem that are bound with one-to-many unidirectional relationship
+* Two child tables: Vote and MenuItem that are connected with Restaurant with one-to-many unidirectional relationship
 
 ### How to run all this:
 - Use the force - read the source
