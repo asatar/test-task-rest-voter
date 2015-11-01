@@ -7,14 +7,14 @@ Build a voting system for deciding where to have lunch.
 
 ------------------------------------------------------------------------------------------------
 
-***Implementation details:
+### Implementation details:
 * Because my questions wasn't answered I made some assumptions.
   - Auth is very simple - basic http. If someone tries to hit endpoint without auth he should get 401 response. If any user is specified with "" password then he is treated as normal user. If user name is admin with "" pass then user is admin
   - "Each restorant provides new menu each day." I treated this in the following way - at app start and the 1st second of the new day clean everything from DB that is older that todays start of the day
 
 
 
-***public API rest endpoints:
+### Public API rest endpoints:
 * /vote/vote-by-name/{restaurantName} - do actual voting till 11:00, returns 200 - OK if vote counted, any other error code otherwise. If vote after 11 then returns 404. Usees method PUT. User is a user from basic auth
 * /vote/showWinner - returns json array of restaurant name and how many votes for it, sorted so winner should be on the top. Usees method GET
 
@@ -24,7 +24,8 @@ Build a voting system for deciding where to have lunch.
 * /restaurant/list - returns json array with all available restaurants with menus. uses method GET.
 
 
-***JSON example to add restaurant:
+### JSON example to add restaurant:
+```JSON
 {
   "Restaurant" : {
     "restaurantName" : "BBBB",
@@ -43,10 +44,10 @@ Build a voting system for deciding where to have lunch.
     } ]
   }
 }
+```
 
 
-
-***Implementation details
+### Implementation details
 * Used spring-boot
 * No xml configs this time
 * Uses in mem h2 db with schema generated on app startup
@@ -57,7 +58,7 @@ Build a voting system for deciding where to have lunch.
 * It even has some tests
 
 
-***Package layout
+### Package layout
 * bean - JPA, JSON and any other classes that are meant to be simple containers for data
 * clock - time service to provide ability to replace it in test
 * config - spring configs and spring boot starter lives there
@@ -68,11 +69,11 @@ Build a voting system for deciding where to have lunch.
 * scheduler - scheduler that cleans everything on startup and beginning on new day
 
 
-***DB schema:
+### DB schema:
 * Restaurant table
 * Two child tables: Vote and MenuItem that are bound with one-to-many unidirectional relationship
 
-***How to run all this:
+### How to run all this:
 - Use the force - read the source
 - Maven, use maven Luke
 
