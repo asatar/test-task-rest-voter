@@ -83,7 +83,19 @@ To start this app do "mvn clean spring-boot:run" wait a bit and it should start 
 - Vote for them using different users
 - ask for a winner
 
-Because I'm using Windows I have no curl, so can't provide 100% sure working lines
+### CURL
+Here are some curl snippets
+
+curl -u admin -H "Content-Type: application/json" -X PUT -d '{"Restaurant" : {"restaurantName" : "BBBB", "menuList" : [ {"name" : "crabs", "price" : 1.0 }, {"name" : "prawns", "price" : 2.0 }, {"name" : "carrot", "price" : 3.0 }, {"name" : "lemon", "price" : 4.0 } ] } }' http://localhost:8080/restaurant/add
+Enter host password for user 'admin':
+
+curl -u user -X GET http://localhost:8080/restaurant/list
+Enter host password for user 'user':
+[{"Restaurant":{"restaurantName":"BBBB","menuList":[{"name":"crabs","price":1.0},{"name":"prawns","price":2.0},{"name":"carrot","price":3.0},{"name":"lemon","price":4.0}]}}]
+
+curl -u user -X PUT http://localhost:8080/vote/vote-by-name/BBBB
+Enter host password for user 'user':
+{"timestamp":1446475956622,"status":404,"error":"Not Found","exception":"voter.exception.TooLateException","message":"Too late for voting","path":"/vote/vote-by-name/BBBB"}
 
 
 
